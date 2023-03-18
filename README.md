@@ -1,1 +1,1 @@
-# RetailShop-Sales-Management-Application
+# RetailShop-Sales-Management-App
