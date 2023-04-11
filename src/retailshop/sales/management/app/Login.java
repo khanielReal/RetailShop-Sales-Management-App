@@ -5,17 +5,25 @@
  */
 package retailshop.sales.management.app;
 
+import java.awt.event.ActionEvent;
+import java.beans.Statement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.*;
+
 /**
  *
  * @author HAniEL
  */
-public class login extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame {
 
     /**
      * Creates new form login
      */
-    public login() {
+    public Login() {
         initComponents();
+        
     }
 
     /**
@@ -33,10 +41,11 @@ public class login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        usernameField = new javax.swing.JTextField();
+        passwordField = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        loginButton = new javax.swing.JButton();
+        passwordError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,15 +70,21 @@ public class login extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Password:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(388, 122, 119, -1));
-        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(388, 166, 119, -1));
+        jPanel1.add(usernameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(388, 122, 119, -1));
+        jPanel1.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(388, 166, 119, -1));
 
         jLabel5.setText("Forgot Password?");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, -1, -1));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton1.setText("LOGIN");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 210, -1, -1));
+        loginButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        loginButton.setText("LOGIN");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, -1, -1));
+        jPanel1.add(passwordError, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 500, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,6 +106,49 @@ public class login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        // TODO add your handling code here:
+         String username = usernameField.getText();
+    String password = new String(passwordField.getPassword());
+    
+      // Check if username and password are correct
+        if (username.equals("admin") && password.equals("root")) {
+            // Open main application window
+            
+            AdminPage adminPage = new AdminPage();
+            adminPage.setVisible(true);
+            dispose();
+        } else {
+           passwordError.setText("Invalid username or password");
+        }
+//    try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//            String url = "jdbc:mysql://localhost:3306/stockmanagement";
+//            String dbUsername = "user1";
+//            String dbPassword = "root";
+//             String sql = "SELECT * FROM users WHERE username='" + username + "' AND password='" + password + "'";
+//             try (Connection conn = DriverManager.getConnection(url, dbUsername, dbPassword)) {
+//               // Statement statemnt1 = (Statement) conn.createStatement();
+//                 PreparedStatement pstmt = conn.prepareStatement(sql);
+//                 pstmt.setString(1, username);
+//                 pstmt.setString(2, password);
+//                 ResultSet rs = pstmt.executeQuery();
+//                // ResultSet rs1 = statemnt1.executeQuery(); 
+//                 
+//                 
+//                 if (rs.next()) {
+//                     // Open main application window
+//                     AdminPage adminPage = new AdminPage();
+//                     adminPage.setVisible(true);
+//                     dispose();
+//                 } else {
+//                     passwordError.setText("Invalid username or password");
+//                 }}
+//        } catch (ClassNotFoundException | SQLException ex) {
+//            ex.printStackTrace();
+//        }
+    }//GEN-LAST:event_loginButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -108,26 +166,27 @@ public class login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new login().setVisible(true);
+                new Login().setVisible(true);
+               
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -135,7 +194,12 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton loginButton;
+    private javax.swing.JLabel passwordError;
+    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
+
+    
+
 }

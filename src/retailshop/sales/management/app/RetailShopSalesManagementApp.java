@@ -16,6 +16,8 @@ public class RetailShopSalesManagementApp {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Login loginForm = new Login();
+        loginForm.setVisible(true);
     }
     
 }

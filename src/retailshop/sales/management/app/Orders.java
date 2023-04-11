@@ -129,7 +129,7 @@ public class Orders extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {                                     
         // TODO add your handling code here:
-        homepage obj = new homepage();
+        AdminPage obj = new AdminPage();
         obj.setVisible(true);
         dispose();
         
